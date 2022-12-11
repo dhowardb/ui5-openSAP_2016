@@ -1,0 +1,97 @@
+{
+        "_version": "1.49.0",
+        "sap.app": {
+                "_version": "1.49.0",
+                "id": "opensap.myapp",
+                "type": "application",
+                "title": "{{appTitle}}",
+                "i18n": "i18n/i18n.properties",
+                "description": "{{appDescription}}",
+                "applicationVersion": {
+                        "version": "${project.version}"
+                }
+        },
+        "sap.ui": {
+                "_version": "1.49.0",
+                "technology": "UI5",
+                "deviceTypes": {
+                        "desktop": true,
+                        "tablet": true,
+                        "phone": false
+                },
+                "supportedThemes": [
+                        "sap_hcb",
+                        "sap_belize"
+                ]
+        },
+        "sap.ui5": {
+                "_version": "1.49.0",
+                "dependencies": {
+                        "minUI5Version": "1.101.0",
+                        "libs": {
+                                "sap.ui.core": {
+                                        "minVersion": "1.38.1",
+                                        "lazy" : false
+                                },
+                                "sap.ca.ui": {
+                                        "minVersion": "1.38.1",
+                                        "lazy" : false
+                                },
+                                "sap.m": {
+                                        "minVersion": "1.38.1",
+                                        "lazy" : false
+                                },
+                                "sap.ui.layout": {
+                                        "minVersion": "1.38.1",
+                                        "lazy" : false
+                               },
+                                "sap.ushell": {
+                                        "minVersion": "1.38.1",
+                                        "lazy" : false
+                                },
+                                "sap.apf": {
+                                        "minVersion": "1.38.1",
+                                        "lazy" : false
+                                },
+                                "sap.viz": {
+                                        "minVersion": "1.38.1",
+                                        "lazy" : false
+                                }
+                        }
+                },
+                "extends": {
+                        "component": "sap.apf.base"
+                },             
+                "contentDensities": {
+                        "compact": true,
+                        "cozy": true
+                },
+                "config": {
+                    "sapFiori2Adaptation": true
+                },                
+                "rootView": {                        
+                    "viewName": "opensap.myapp.view.App",
+                     "type": "XML",
+                    "id": "app"
+                },
+                "models": {
+                    "i18n": {
+                        "type": "sap.ui.model.resource.ResourceModel",
+                        "settings": {
+                            "bundleName": "opensap.myapp.i18n.i18n"
+                        }
+                    },
+                    "helloPanel": {
+                        "type": "sap.ui.model.json.JSONModel",                            
+                        "uri": "model/HelloPanel.json"
+                    },
+                    "address" : {
+                        "type": "sap.ui.model.json.JSONModel",
+                        "uri" : "model/Address.json"
+                    }
+
+                }
+                    
+                    
+        }
+}

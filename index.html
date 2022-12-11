@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src='main.js'></script> -->
+
+    <script
+      id="sap-ui-bootstrap"
+      src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+      data-sap-ui-theme="sap_bluecrystal"
+      data-sap-ui-libs="sap.m"
+      data-sap-ui-compatVersion="edge"
+      data-sap-ui-preload="async"
+      data-sap-ui-resourceroots='{"opensap.myapp" : "./"}'></script>
+
+    <!-- <script
+      id="sap-ui-bootstrap"
+      src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+      data-sap-ui-theme="sap_bluecrystal"
+      data-sap-ui-libs="sap.m"
+      data-sap-ui-compatVersion="edge"
+      data-sap-ui-preload="async"
+      data-sap-ui-resourceroots='{
+        "opensap.myapp": "./"
+    }'>
+</script> -->
+
+    <script>
+      sap.ui.getCore().attachInit(function () {
+        // let image = new sap.m.Image({
+        //   src: "https://media.istockphoto.com/id/1204523406/photo/sap-system-software-automation-concept-on-virtual-screen-data-center-business-modern.jpg?s=612x612&w=0&k=20&c=SFhlf-gYEQUhZ5O3VVYqFEoqE9s-1Pvmwo0sAuEGKBo=",
+        //   height: "300px",
+        // }).placeAt(content);
+        //or used setheight
+        // image.setHeight("200px");
+
+        //using views
+        sap.ui;
+        //   .xmlview({
+        //     viewName: "opensap.myapp.view.App",
+        //   })
+        //   .placeAt(content);
+
+        //using Components
+        new sap.ui.core.ComponentContainer({
+          name: "opensap.myapp",
+        }).placeAt(content);
+      });
+    </script>
+  </head>
+  <body class="sapUiBody" id="content"></body>
+</html>
