@@ -1,4 +1,4 @@
-<mvc:View displayBlock="true" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" controllerName="opensap.myapp.controller.App">
+<mvc:View displayBlock="true" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" controllerName="opensap.myapp.controller.App">
     <App>
         <pages>
             <Page title="openSAP - Developing with SAPUI5">
@@ -13,13 +13,27 @@
                                     </pages>
                                 </Carousel>
                                 <Button text="{i18n>showHelloButtonText}" press="onShowHelloHandler" />
-                                <Input value="{helloPanel>/recipient/name}" description="Hello {helloPanel>/recipient/name}" valueLiveUpdate="true" width="60%" />
+                                <Input
+                                    value="{
+                                    path : 'helloPanel>/recipient/name',
+                                    type : 'sap.ui.model.type.Float',
+                                    formatOptions: {
+                                        minFractionDigits : 2
+                                    },
+                                        constraints : {
+                                            maximum: 3000
+                                        }
+                                            }"
+                                    description="Hello {helloPanel>/recipient/name}"
+                                    valueLiveUpdate="false"
+                                    width="60%"
+                                />
                             </IconTabFilter>
                             <IconTabFilter id="layouts" text="{i18n>layoutFilter}">
                                 <MessageStrip
                                     showIcon="true"
                                     text="Here's a Form Layout inside an Icon Tab Bar. The labels on the right hand-side are aligned to the right, while the input fields are aligned to the left. The icons of 'Publish' and 'Save Draft' button are taken from the UI5 icon library."
-                                    type="information"
+                                    type="Information"
                                 />
                                 <f:SimpleForm id="simpleFormChange" title="Address" editable="true" class="editableForm sapUiSmallMarginTopBottom">
                                     <f:content>
@@ -54,6 +68,78 @@
                                     <Button text="{i18n>layoutPublishButton}" icon="sap-icon://outbox" type="Accept" />
                                     <Button text="{i18n>layoutDraftButton}" icon="sap-icon://save" />
                                 </Toolbar>
+                            </IconTabFilter>
+                            <IconTabFilter text="Data Binding" key="db">
+                                <List
+                                    id="invoiceList"
+                                    headerText="Products"
+                                    width="auto"
+                                    items="{
+                                        path: '/Products',
+                                        sorter: {
+                                            path: 'CategoryID',
+                                            group: true
+
+                                        },
+                                        parameters: {
+                                            expand: 'ToSupplier'                                
+                                        }
+                                        }"
+                                    growing="true"
+                                    growingThreshold="5"
+                                    growingScrollToLoad="false"
+                                    mode="SingleSelectMaster"
+                                    selectionChange="onItemSelected"
+                                >
+                                    <!-- <StandardListItem type="Active" title="{ProductName}" /> -->
+                                    <headerToolbar>
+                                        <Toolbar>
+                                            <Title text="{i18n>productListTitle}" />
+                                            <ToolbarSpacer />
+                                            <SearchField width="50%" search="onFilterProducts" />
+                                        </Toolbar>
+                                    </headerToolbar>
+                                    <items>
+                                        <ObjectListItem
+                                            title="{ProductName}"
+                                            number="{
+                                                            parts: [
+                                                            {path: 'UnitPrice'},
+                                                            {path: 'CurrencyCode'}],
+                                                            
+                                                            type: 'sap.ui.model.type.Currency',
+                                                            formatOptions: {
+                                                                showMeasure: false
+                                                            }
+                                                        }"
+                                            intro="{ProductID}"
+                                            numberUnit="{CurrencyCode}"
+                                            numberState="{=${UnitPrice} > 35 ? 'Error' : 'Success' }"
+                                        >
+                                            <firstStatus>
+                                                <ObjectStatus
+                                                    text="{ 
+                                                    parts: [
+                                                    { path: 'UnitsInStock' } ],
+                                                    formatter: '.formatter.delivery'
+                                                }"
+                                                />
+                                            </firstStatus>
+                                            <secondStatus>
+                                                <ObjectStatus title="Deliver From" text="{DeliveryLocation}" />
+                                            </secondStatus>
+                                        </ObjectListItem>
+                                    </items>
+                                </List>
+                                <Toolbar />
+                                <Panel id="productDetailsPanel" headerText="Product Details" visible="false">
+                                    <l:Grid>
+                                        <Text text="Product ID: {ProductID}" />
+                                        <Text text="Product Name: {ProductName}" />
+                                        <Text text="Description: {QuantityPerUnit}" />
+                                        <Text text="Price: {UnitPrice}" />
+                                    </l:Grid>
+                                </Panel>
                             </IconTabFilter>
                         </items>
                     </IconTabBar>
