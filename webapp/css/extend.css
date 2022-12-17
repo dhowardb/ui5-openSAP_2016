@@ -22,6 +22,10 @@
     width: 6rem;
 } */
 
-.extendAttrWidth .sapMOHAttrRow {
+/* .extendAttrWidth .sapMOHBottomRow, .sapMOHAttrRow, .sapMOHAttr {
+    width: 6rem;
+} */
+
+.extendAttrWidth .sapMOHBottomRow, .sapMOHAttrRow {
     width: 6rem;
 }
