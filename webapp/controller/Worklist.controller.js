@@ -20,6 +20,12 @@ sap.ui.define(
     return BaseController.extend("week3.controller.Worklist", {
       formatter: formatter,
 
+      _filterObject: {
+        Cheap: [new Filter("UnitPrice", "LT", 100)],
+        Moderate: [new Filter("UnitPrice", "BT", 100, 750)],
+        Expensive: [new Filter("UnitPrice", "GT", 750)],
+      },
+
       /* =========================================================== */
       /* lifecycle methods                                           */
       /* =========================================================== */
@@ -46,6 +52,9 @@ sap.ui.define(
             [location.href]
           ),
           tableNoDataText: this.getResourceBundle().getText("tableNoDataText"),
+          Cheap: "",
+          Moderate: "",
+          Expensive: "",
         });
         this.setModel(oViewModel, "worklistView");
       },
@@ -68,12 +77,27 @@ sap.ui.define(
         var sTitle,
           oTable = oEvent.getSource(),
           iTotalItems = oEvent.getParameter("total");
+
+        // const model = this.getModel();
+        // const viewModel = this.getModel("worklistView");
+
         // only update the counter if the length is final and
         // the table is not empty
         if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
           sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [
             iTotalItems,
           ]);
+
+          // jQuery.each(this._filterObject, function (key, filter) {
+          //   // const viewModel = this.getMode("worklistView");
+          //   this.getModel().read("/Products/$count", {
+          //     filters: filter,
+          //     Success: function (oData) {
+          //       const path = "/" + key;
+          //       viewModel.setProperty(path, oData);
+          //     },
+          //   });
+          // });
         } else {
           sTitle = this.getResourceBundle().getText("worklistTableTitle");
         }
@@ -154,6 +178,50 @@ sap.ui.define(
       onRefresh: function () {
         var oTable = this.byId("table");
         oTable.getBinding("items").refresh();
+      },
+
+      onShowDetailPopOver: function (event) {
+        // const popOver = this.byId("popOver");
+        const popOver = this._getPopOver();
+        popOver.bindElement(event.getSource().getBindingContext().getPath());
+        const opener = event.getParameter("domRef");
+        popOver.openBy(opener);
+      },
+
+      _getPopOver: function () {
+        // let popOver;
+        // if (!popOver) {
+        //   popOver = sap.ui.xmlfragment("week3.fragments.DetailPopOver", this);
+        //   this.getView().addDependent(popOver);
+        // }
+        // return popOver;
+
+        //we use this so every instantiation it triggers new
+        //adding this will change the method to a property type
+        if (!this.popOver) {
+          this.popOver = sap.ui.xmlfragment(
+            "week3.fragments.DetailPopOver",
+            this
+          );
+          this.getView().addDependent(this.popOver);
+        }
+        return this.popOver;
+      },
+
+      onShowStatusPopOver: function (event) {
+        const popOver = this.byId("statusPopOver");
+
+        popOver.bindElement(event.getSource().getBindingContext().getPath());
+        const opener = event.getParameter("domRef");
+        popOver.openBy(opener);
+      },
+
+      onFilterSelectHandler: function (event) {
+        const key = event.getParameter("key");
+        const filteredSelect = this._filterObject[key];
+        const binding = this.byId("table").getBinding("items");
+
+        binding.filter(filteredSelect);
       },
 
       /* =========================================================== */

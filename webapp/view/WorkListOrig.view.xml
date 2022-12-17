@@ -1,22 +1,10 @@
-<mvc:View controllerName="week3.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap">
-    <Page id="page">
-        <!-- <Title>
+<mvc:View controllerName="week3.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:l="sap.ui.layout">
+    <semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+        <semantic:titleHeading>
             <Title id="_IDGenTitle1" text="{i18n>worklistTitle}" level="H2" />
-        </Title> -->
+        </semantic:titleHeading>
 
-        <!-- <headerContent>
-            <ObjectHeader id="objectHeader" title="{i18n>worklistTitle}" introTextDirection="LTR" />
-        </headerContent> -->
-
-        <!-- <uxap:ObjectPageHeaderContent id="workListHeaderContent" class="extendTopPadding">
-            <uxap:content>
-                <ObjectHeader id="objectHeader" title="{i18n>worklistTitle}" class="addHeight sapUiResponsiveContentPadding" />
-            </uxap:content>
-        </uxap:ObjectPageHeaderContent> -->
-
-        <ObjectHeader id="objectHeader" title="{i18n>worklistTitle}" class="sapUiResponsiveContentPadding extendPadding" />
-
-        <content>
+        <semantic:content>
             <IconTabBar id="idIconTabBar" select=".onFilterSelectHandler" class="sapUiResponsiveContentPadding">
                 <items>
                     <IconTabFilter id="_IDGenIconTabFilter1" showAll="true" count="All" text="Products" key="All" />
@@ -64,7 +52,7 @@
                             <!-- <Column id="QuantityPerUnitColumn">
                         <Text text="{i18n>quantityPerUnitTitle}" id="QuantityPerUnitTitle" demandPopin="true" minScreenWidth="Tablet" />
                     </Column> -->
-                            <Column id="supplierColumn" demandPopin="false" minScreenWidth="Tablet">
+                            <Column id="supplierColumn" demandPopin="true" minScreenWidth="Tablet">
                                 <Text text="{i18n>supplierIDTitle}" id="supplierTitle" />
                             </Column>
                             <!-- <Column id="reOrderColumn">
@@ -86,9 +74,7 @@
                                 <cells>
                                     <ObjectIdentifier id="_IDGenObjectIdentifier1" title="{ProductID}" text="{ProductName}" titleActive="true" titlePress="onShowDetailPopOver" />
                                     <Text id="_IDGenText1" text="{SupplierID}" />
-                                    <!-- <ObjectIdentifier text="{SupplierID}" /> -->
-                                    <!-- <Link id="_IDGenLink1" text="{Supplier/Address}" href="{Supplier/Address}" target="_blank" /> -->
-                                    <Link id="_IDGenLink1" text="{Supplier/Address}" href="https://google.com" target="google" />
+                                    <Link id="_IDGenLink1" text="{Supplier/Address}" href="{Supplier/Address}" target="_blank" />
                                     <ObjectNumber id="_IDGenObjectNumber1" number="{
                                     path: 'UnitPrice',
                                     formatter: '.formatter.numberUnit'
@@ -100,14 +86,14 @@
                     </Table>
                 </content>
             </IconTabBar>
-        </content>
+        </semantic:content>
 
-        <!-- <sendEmailAction>
-            <SendEmailAction id="shareEmail" press=".onShareEmailPress" />
-        </sendEmailAction> -->
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress" />
+        </semantic:sendEmailAction>
 
-        <!-- <dependents>
-            <ResponsivePopover id="popOver" title="Stocks" class="sapUiResponsiveContentPadding">
+        <semantic:dependents>
+            <ResponsivePopover id="popOver" title="Stocks" class="sapUiPopWithPadding">
                 <l:Grid>
                     <l:content>
                         <Text text="Units in Stock: { path: 'UnitsInStock', formatter: '.formatter.numberUnit'}" />
@@ -116,14 +102,14 @@
                     </l:content>
                 </l:Grid>
             </ResponsivePopover>
-        </dependents> -->
+        </semantic:dependents>
 
-        <dependents>
-            <ResponsivePopover id="statusPopOver" title="Product Status" class="sapUiResponsiveContentPadding" contentWidth="auto">
+        <semantic:dependents>
+            <ResponsivePopover id="statusPopOver" title="Stocks" class="sapUiContentPadding" contentWidth="auto">
                 <content>
                     <Text text="This product is { path: 'Discontinued', formatter: '.formatter.discontinued'}" textAlign="Begin" textDirection="LTR" />
                 </content>
             </ResponsivePopover>
-        </dependents>
-    </Page>
+        </semantic:dependents>
+    </semantic:SemanticPage>
 </mvc:View>

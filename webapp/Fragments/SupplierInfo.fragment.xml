@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <!-- <Panel id="supplierPanelObject" class="sapUiResponsiveMargin" width="auto" expandable="true" expanded="false" headerText="SupplierID">
+        <content>
+            <List>
+                <items>
+                    <StandardListItem icon="sap-icon://building" title="{Supplier/Country}" />
+                    <StandardListItem icon="sap-icon://email" title="{Supplier/ContactTitle}" />
+                    <StandardListItem icon="sap-icon://phone" title="{Supplier/Phone}" />
+                    <StandardListItem icon="sap-icon://map" title="{Supplier/City}" />
+                </items>
+            </List>
+        </content>
+    </Panel>
+
+    <Panel id="mapPanel" class="sapUiResponsiveMargin sapUiHideOnPhone" expandable="{device>/system/phone}" expanded="false" width="auto" headerText="Map">
+        <Image id="_IDGenImage2" src="https://www.cloudera.com/content/dam/www/marketing/images/logos/partners/sap.jpg" height="250px" />
+    </Panel> -->
+
+    <Panel class="sapUiResponsiveMargin" width="auto" expandable="true" expanded="false" headerText="SupplierID">
+        <content>
+            <List>
+                <items>
+                    <StandardListItem icon="sap-icon://building" title="{Supplier/Country}" />
+                    <StandardListItem icon="sap-icon://email" title="{Supplier/ContactTitle}" />
+                    <StandardListItem icon="sap-icon://phone" title="{Supplier/Phone}" />
+                    <StandardListItem icon="sap-icon://map" title="{Supplier/City}" />
+                </items>
+            </List>
+        </content>
+    </Panel>
+
+    <Panel class="sapUiResponsiveMargin sapUiHideOnPhone" expandable="{device>/system/phone}" expanded="false" width="auto" headerText="Map">
+        <Image src="https://www.cloudera.com/content/dam/www/marketing/images/logos/partners/sap.jpg" height="250px" />
+        <!-- <Image id="_IDGenImage1" src="{
+                    parts: {
+                        'Supplier/Address',
+                        'Supplier/City',
+                        'Supplier/Country'
+                    },
+                    formatter:  '.formatter.formatMapUrl'
+                }" /> -->
+    </Panel>
+
+    <!-- <Panel class="sapUiResponsiveMargin" expandable="{device>/system/phone}" expanded="false" width="auto" headerText="Product">
+        <content>
+            <form:SimpleForm>
+                <form:content>
+                    <Label text="Category ID" />
+                    <Text text="{CategoryID}" />
+                    <Label text="Unit Price" />
+                    <Text text="{UnitPrice}" />
+                    <Label text="Units on Order" />
+                    <Text text="{UnitsOnOrder}" />
+                    <Label text="Units in Stock" />
+                    <Text text="{UnitsInStock}" />
+                </form:content>
+            </form:SimpleForm>
+        </content>
+    </Panel> -->
+</core:FragmentDefinition>

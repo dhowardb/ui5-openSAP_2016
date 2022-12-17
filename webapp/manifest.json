@@ -81,7 +81,9 @@
       }
     },
     "resources": {
-      "css": []
+      "css": [
+        {"uri": "css/extend.css"} 
+      ]
     },
     "routing": {
       "config": {
@@ -111,6 +113,13 @@
           "target": [
             "object"
           ]
+        },
+        {
+          "pattern": "https://google.com",
+          "name": "google",
+          "target": [
+            "google"
+          ]
         }
       ],
       "targets": {
@@ -133,6 +142,10 @@
         "notFound": {
           "viewName": "NotFound",
           "viewId": "notFound"
+        },
+        "google": {
+          "viewName": "google",
+          "viewId": "google"
         }
       }
     },

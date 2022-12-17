@@ -1,21 +1,41 @@
-<mvc:View controllerName="week3.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic">
-    <semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
-        <semantic:titleHeading>
-            <!-- <Title
+<mvc:View xmlns:uxap="sap.uxap" xmlns:form="sap.ui.layout.form" controllerName="week3.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.f.semantic" xmlns:l="sap.ui.layout">
+    <Page id="page" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
+        <!-- <Title
                 text="{ProductID}"
                 level="H2"/> -->
-            <ObjectHeader id="objectHeader" title="{ProductID}" level="H2" />
-        </semantic:titleHeading>
 
-        <semantic:headerContent>
-            <ObjectNumber number="{
-                    path: 'UnitPrice',
+        <ObjectHeader id="objectHeader" title="{ProductName}" titleActive="true" titlePress="onShowDetailPopOver">
+            <attributes>
+                <ObjectAttribute class="extendAttrWidth" id="_IDGenObjectAttribute1" text="{ProductID}" active="true" press="onShowDetailPopOver" />
+                <!-- <ObjectIdentifier /> -->
+            </attributes>
+        </ObjectHeader>
+
+        <headerContent>
+            <ObjectNumber id="_IDGenObjectNumber1" number="{
+                    path: 'UnitsInStock',
                     formatter: '.formatter.numberUnit'
-                }" unit="{UnitsInStock}" />
-        </semantic:headerContent>
+                }" />
 
-        <semantic:sendEmailAction>
-            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress" />
-        </semantic:sendEmailAction>
-    </semantic:SemanticPage>
+            <!-- unit="{ 
+                    path: 'UnitsInStock',
+                    formatter: '.formatter.stocksUnit',
+                    state: 'Error'
+                 }" -->
+            <ObjectStatus text="{ 
+                    path: 'UnitsInStock',
+                    formatter: '.formatter.stocksUnit'
+                 }" state="{ 
+                    path: 'UnitsInStock',
+                    formatter: '.formatter.stocksStatus'
+                 }" />
+        </headerContent>
+
+        <content>
+            <!-- <core:Fragment fragmentName="week3.view.SupplierInfo" type="XML" /> -->
+            <mvc:View viewName="week3.view.ProductDetails" type="XML" />
+            <core:Fragment fragmentName="week3.Fragments.SupplierInfo" type="XML" />
+            <mvc:View viewName="week3.view.ProductDetails" type="XML" />
+        </content>
+    </Page>
 </mvc:View>

@@ -1,0 +1,27 @@
+.addHeight .sapMTextLineClamp {
+    height: 2rem;
+}
+
+.extendPadding .sapMOH {
+    padding: 1rem 3rem; 
+}
+
+/* .extendAttrWidth .sapMOH .sapMOHBottomRow .sapMOHAttrRow .sapMOHAttr .sapMObjectAttributeDiv {
+    width: 1rem;
+} */
+
+/* .extendAttrWidth .sapMOHAttr .div.sapMObjectAttributeDiv .div.sapMObjectAttributeActive .div.sapMObjectAttributeTextOnly{
+    width: 1rem;
+} */
+
+/* .extendAttrWidth .sapMOHBottomRow, .sapMOHAttr, .sapMObjectAttributeDiv {
+    width: 1rem;
+} */
+
+/* .extendAttrWidth .sapMOHBottomRow, .sapMOHAttrRow, .sapMOHAttr {
+    width: 6rem;
+} */
+
+.extendAttrWidth .sapMOHAttrRow {
+    width: 6rem;
+}
